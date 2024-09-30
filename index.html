@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming</title>
+    <style>
+    .center-div {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        position: absolute;
+        left: 50%;
+        top: 75%;
+        text-align: center;
+      }
+      
+    </style>
+</head>
+<body style="background-color: rgb(15, 15, 15);">
+    <div class="center-div" style="background-color: rgb(49, 49, 49);color: white;" id="wheat" onclick="testwheatclick()">
+        <svg id="wheat_img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>barley</title><path d="M7.33,18.33C6.5,17.17 6.5,15.83 6.5,14.5C8.17,15.5 9.83,16.5 10.67,17.67L11,18.23V15.95C9.5,15.05 8.08,14.13 7.33,13.08C6.5,11.92 6.5,10.58 6.5,9.25C8.17,10.25 9.83,11.25 10.67,12.42L11,13V10.7C9.5,9.8 8.08,8.88 7.33,7.83C6.5,6.67 6.5,5.33 6.5,4C8.17,5 9.83,6 10.67,7.17C10.77,7.31 10.86,7.46 10.94,7.62C10.77,7 10.66,6.42 10.65,5.82C10.64,4.31 11.3,2.76 11.96,1.21C12.65,2.69 13.34,4.18 13.35,5.69C13.36,6.32 13.25,6.96 13.07,7.59C13.15,7.45 13.23,7.31 13.33,7.17C14.17,6 15.83,5 17.5,4C17.5,5.33 17.5,6.67 16.67,7.83C15.92,8.88 14.5,9.8 13,10.7V13L13.33,12.42C14.17,11.25 15.83,10.25 17.5,9.25C17.5,10.58 17.5,11.92 16.67,13.08C15.92,14.13 14.5,15.05 13,15.95V18.23L13.33,17.67C14.17,16.5 15.83,15.5 17.5,14.5C17.5,15.83 17.5,17.17 16.67,18.33C15.92,19.38 14.5,20.3 13,21.2V23H11V21.2C9.5,20.3 8.08,19.38 7.33,18.33Z" /></svg>
+        <p>Wheat</p>
+        <p id="time">TIME</p>
+    </div>
+    <h1 id="counter" style="color: white;"></h1>
+</body>
+</html>
+<script>
+    const wheat = document.getElementById('wheat');
+    const timeCounter = document.getElementById('time')
+    const counter = document.getElementById('counter')
+
+
+    let check = 0;
+
+    let wheat_count = 0;
+
+    let timerDuration = 0;
+    let timerStart = 0;
+    let timerInterval = null;
+
+    function testwheatclick() {
+        if (get_time() == 0) {
+            check = 0
+            wheat_count += 1
+        }
+    }
+
+    function start_time(duration) {
+        // Set the timer duration in seconds
+        timerDuration = duration;
+        timerStart = Date.now();
+        
+        // Clear any existing timer
+        if (timerInterval) {
+            clearInterval(timerInterval);
+        }
+
+        // Start a new interval to update the timer
+        timerInterval = setInterval(() => {
+            const elapsed = Math.floor((Date.now() - timerStart) / 1000);
+            if (elapsed >= timerDuration) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }, 1000);
+    }
+
+    function get_time() {
+        if (timerInterval) {
+
+
+            const elapsed = Math.round(((Date.now() - timerStart) / 1000));
+
+
+            return timerDuration - elapsed
+        }
+        return 0; // Timer is not running or has finished
+    }
+    function update() {
+        if (check == 0) {
+            start_time(5)
+            check = 1
+        }
+        timeCounter.innerText = get_time()
+        counter.innerText = wheat_count
+        if (isMouseOverElement(wheat)) {
+            if (get_time() == 0){
+                wheat.style.cursor = 'pointer';
+            }
+            else {
+                wheat.style.cursor = 'default'
+            }
+        }
+        else {
+            wheat.style.cursor = 'default';
+        }
+            
+        requestAnimationFrame(update)
+    }
+    update()
+
+
+    /* This is commented out, due to event listener not repeating. and, causing a few small bugs. That kills me to keep. UPDATE: we have a new detector \/ \/ \/ look under this
+    
+    wheat.addEventListener('mouseenter', () => {
+        if (get_time() == 0) {
+            wheat.style.cursor = 'pointer'; // Change cursor to pointer
+        }
+        else {
+            wheat.style.cursor = 'default'; // Reset cursor to default
+        }
+    });
+
+    wheat.addEventListener('mouseleave', () => {
+        wheat.style.cursor = 'default'; // Reset cursor to default
+    });
+
+    down more */
+    
+    function isMouseOverElement(element) {
+        return element.matches(':hover');
+    }
+
+
+</script>
