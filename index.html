@@ -5,46 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farming</title>
     <style>
-    .center-div {
+    div.center-div { /*wow*/
         position: absolute;
         left: 50%;
         top: 50%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
         padding: 20px;
+        background-color: rgb(49, 49, 49);
+        color: white;
         text-align: center;
-      }
-      h1 {
+    }
+    div.center-div#cooker {
+        left: 90%;
+        
+    }
+    h1 {
         position: absolute;
-        left: 50%;
+        left: 50%; /*TO DO: MAKE THIS CENTER update: making tis center.*/
         top: 75%;
         text-align: center;
-      }
-      
+        color: white;
+    }
+    div#crafting-table {
+        left: 75%;
+        width: 10%;
+        height: 10%;
+        padding: 0px;
+    }
+    div.cslots {
+        position: static;
+        padding: 2px;
+        position: static;
+    }
+    
+    .counter {
+        color: wheat
+    }
+
+    .counter#b_counter {
+        top: 80%;
+    } 
+
+    .counter#w_counter {
+        top: 75%;
+    } 
+    .c {
+        background-color: rgb(49, 49, 49);
+    }
+
     </style>
 </head>
 <body style="background-color: rgb(15, 15, 15);">
-    <div class="center-div" style="background-color: rgb(49, 49, 49);color: white;" id="wheat" onclick="testwheatclick()">
-        <svg id="wheat_img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>barley</title><path d="M7.33,18.33C6.5,17.17 6.5,15.83 6.5,14.5C8.17,15.5 9.83,16.5 10.67,17.67L11,18.23V15.95C9.5,15.05 8.08,14.13 7.33,13.08C6.5,11.92 6.5,10.58 6.5,9.25C8.17,10.25 9.83,11.25 10.67,12.42L11,13V10.7C9.5,9.8 8.08,8.88 7.33,7.83C6.5,6.67 6.5,5.33 6.5,4C8.17,5 9.83,6 10.67,7.17C10.77,7.31 10.86,7.46 10.94,7.62C10.77,7 10.66,6.42 10.65,5.82C10.64,4.31 11.3,2.76 11.96,1.21C12.65,2.69 13.34,4.18 13.35,5.69C13.36,6.32 13.25,6.96 13.07,7.59C13.15,7.45 13.23,7.31 13.33,7.17C14.17,6 15.83,5 17.5,4C17.5,5.33 17.5,6.67 16.67,7.83C15.92,8.88 14.5,9.8 13,10.7V13L13.33,12.42C14.17,11.25 15.83,10.25 17.5,9.25C17.5,10.58 17.5,11.92 16.67,13.08C15.92,14.13 14.5,15.05 13,15.95V18.23L13.33,17.67C14.17,16.5 15.83,15.5 17.5,14.5C17.5,15.83 17.5,17.17 16.67,18.33C15.92,19.38 14.5,20.3 13,21.2V23H11V21.2C9.5,20.3 8.08,19.38 7.33,18.33Z" /></svg>
+    <div class="center-div" id="wheat" onclick="testwheatclick()">
+        <svg id="wheat_img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Wheat</title><path d="M7.33,18.33C6.5,17.17 6.5,15.83 6.5,14.5C8.17,15.5 9.83,16.5 10.67,17.67L11,18.23V15.95C9.5,15.05 8.08,14.13 7.33,13.08C6.5,11.92 6.5,10.58 6.5,9.25C8.17,10.25 9.83,11.25 10.67,12.42L11,13V10.7C9.5,9.8 8.08,8.88 7.33,7.83C6.5,6.67 6.5,5.33 6.5,4C8.17,5 9.83,6 10.67,7.17C10.77,7.31 10.86,7.46 10.94,7.62C10.77,7 10.66,6.42 10.65,5.82C10.64,4.31 11.3,2.76 11.96,1.21C12.65,2.69 13.34,4.18 13.35,5.69C13.36,6.32 13.25,6.96 13.07,7.59C13.15,7.45 13.23,7.31 13.33,7.17C14.17,6 15.83,5 17.5,4C17.5,5.33 17.5,6.67 16.67,7.83C15.92,8.88 14.5,9.8 13,10.7V13L13.33,12.42C14.17,11.25 15.83,10.25 17.5,9.25C17.5,10.58 17.5,11.92 16.67,13.08C15.92,14.13 14.5,15.05 13,15.95V18.23L13.33,17.67C14.17,16.5 15.83,15.5 17.5,14.5C17.5,15.83 17.5,17.17 16.67,18.33C15.92,19.38 14.5,20.3 13,21.2V23H11V21.2C9.5,20.3 8.08,19.38 7.33,18.33Z" /></svg>
         <p>Wheat</p>
         <p id="time">TIME</p>
     </div>
-    <h1 id="counter" style="color: white;"></h1>
+    </div>
+    <h1 id="w_counter" class="counter"></h1>
+    <h1 id="b_counter" class="counter"></h1>
+    <button type="button" onclick="eval(prompt('eval()'))"></button>
+    <div class="center-div" id="cooker" id="wheat" onclick="craft_bread()" style="text-align: center;">
+        <p>Bake</p>
+        <span style="font-size: 10px;">(3 wheat)</span>
+    </div>
 </body>
 </html>
 <script>
     const wheat = document.getElementById('wheat');
     const timeCounter = document.getElementById('time')
-    const counter = document.getElementById('counter')
-
+    const w_counter = document.getElementById('w_counter')
+    const b_counter = document.getElementById('b_counter')
+    const ct = document.getElementById('crafting-table')
 
     let check = 0;
 
     let wheat_count = 0;
+    let bread_count = 0;
 
     let timerDuration = 0;
     let timerStart = 0;
     let timerInterval = null;
+    
+    function craft_bread() {
+        if (wheat_count >= 3) {
+            const bread_c = Math.floor(wheat_count/3);
+            wheat_count -= bread_c*3;
+            bread_count += bread_c
+        }
+    }
 
     function testwheatclick() {
         if (get_time() == 0) {
@@ -90,7 +140,8 @@
             check = 1
         }
         timeCounter.innerText = get_time()
-        counter.innerText = wheat_count
+        w_counter.innerText = wheat_count + ' Wheat.'
+        b_counter.innerText = bread_count + ' Breeeeead.'
         if (isMouseOverElement(wheat)) {
             if (get_time() == 0){
                 wheat.style.cursor = 'pointer';
@@ -102,7 +153,8 @@
         else {
             wheat.style.cursor = 'default';
         }
-            
+        w_counter.style.left = ((window.innerWidth - w_counter.offsetWidth) / 2) + 'px';
+        b_counter.style.left = ((window.innerWidth - b_counter.offsetWidth) / 2) + 'px';
         requestAnimationFrame(update)
     }
     update()
@@ -125,8 +177,9 @@
 
     down more */
     
+    
     function isMouseOverElement(element) {
-        return element.matches(':hover');
+        return element.matches(':hover'); //this was so easy, since when?
     }
 
 
